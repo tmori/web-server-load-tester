@@ -1,12 +1,19 @@
 #!/bin/bash
 
+if [ -z ${TEST_TARGET} ]
+then
+    source env/env.bash
+fi
+
+source ${TEST_LOGGER}
+
 if [ $# -ne 1 ]
 then
-    echo "Usage: $0 <impl>"
+    terror "Usage: $0 <impl>"
     exit 1
 fi
 
 IMPL=${1}
-echo "#START DO"
+#tlog "START DO"
 bash ${TEST_IMPL_DIR}/runner/do/${IMPL}-do.bash
-echo "#END DONE"
+#tlog "END DONE"

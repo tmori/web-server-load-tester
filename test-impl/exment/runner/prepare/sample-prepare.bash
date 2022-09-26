@@ -1,3 +1,10 @@
 #!/bin/bash
 
-echo "PREPARE TEST..."
+if [ -z ${TEST_TARGET} ]
+then
+    source env/env.bash
+fi
+
+source ${TEST_LOGGER}
+
+tlog "PREPARE TEST..."

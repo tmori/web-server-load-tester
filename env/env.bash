@@ -6,3 +6,4 @@ export TEST_TARGET=exment
 export TEST_IMPL_DIR=${TOP_DIR}/test-impl/${TEST_TARGET}
 export TEST_ITEM_DIR=${TOP_DIR}/test-item/${TEST_TARGET}
 export TEST_RNTM_DIR=${TOP_DIR}/test-runtime
+export TEST_LOGGER=${TOP_DIR}/test-logger/simple-logger.bash

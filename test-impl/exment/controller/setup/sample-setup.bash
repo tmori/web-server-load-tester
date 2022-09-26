@@ -1,3 +1,10 @@
 #!/bin/bash
 
-echo "SETUP TEST..."
+if [ -z ${TEST_TARGET} ]
+then
+    source env/env.bash
+fi
+
+source ${TEST_LOGGER}
+
+tlog "SETUP TEST..."
