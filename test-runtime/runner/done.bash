@@ -13,6 +13,16 @@ then
 fi
 
 IMPL=${1}
+
+
+if [ -f ${TEST_IMPL_DIR}/runner/done/${IMPL}-done.bash ]
+then
+    :
+else
+    terror "ERROR: ${TEST_IMPL_DIR}/runner/done/${IMPL}-done.bash is not found"
+    exit 1
+fi
+
 #tlog "START DONE"
 bash ${TEST_IMPL_DIR}/runner/done/${IMPL}-done.bash
 #tlog "END DONE"
