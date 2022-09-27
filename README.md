@@ -47,7 +47,7 @@ web-server-load-tester
 └── test-utils [共通ライブラリ]
 ```
 
-テスト実行する親玉は、`test-controller.bash` であり、bash スクリプトで 50 行程度でコーディングされていますので、bash スクリプト使える方なら簡単に理解できると思います。
-テスト項目実行部分は、`test-runner.bash` であり、こちらも bash スクリプトで 30 行程度でコーディングされています。わりと簡単に理解できると思われます。
+テスト実行する親玉は、[test-controller.bash](https://github.com/tmori/web-server-load-tester/blob/main/test-runtime/test-controller.bash) であり、bash スクリプトで 50 行程度でコーディングされていますので、bash スクリプト使える方なら簡単に理解できると思います。
+テスト項目実行部分は、[test-runner.bash](https://github.com/tmori/web-server-load-tester/blob/main/test-runtime/test-runner.bash) であり、こちらも bash スクリプトで 30 行程度でコーディングされています。わりと簡単に理解できると思われます。
 
 
