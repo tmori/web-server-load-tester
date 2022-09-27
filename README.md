@@ -10,7 +10,7 @@ Web API発行部分やテスト結果の確認部分は、プラグイン(イン
 
 
 ## 機能概要
-テスト項目に共通する環境設定情報は、[env.bash](https://github.com/tmori/web-server-load-tester/blob/main/env/env.bash) にて、環境変数で定義します。
+テスト項目に共通する環境設定情報は、[env.bash](https://github.com/tmori/web-server-load-tester/blob/main/env/env.bash) にて、[環境変数](https://github.com/tmori/web-server-load-tester/blob/main/README.md#%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0)で定義します。
 テスト項目は、csv ファイル([サンプル](https://github.com/tmori/web-server-load-tester/blob/main/test-item/sample-test-item.csv))で定義します。
 
 テストフレームワークは、csv で定義されたテスト項目ファイルをパースして、全テスト項目を自動実行してくれます。
@@ -30,7 +30,7 @@ git clone https://github.com/tmori/web-server-load-tester.git
 
 ## セットアップ手順
 
-1. [env.bash](https://github.com/tmori/web-server-load-tester/blob/main/env/env.bash) の環境変数を定義してください。
+1. [env.bash](https://github.com/tmori/web-server-load-tester/blob/main/env/env.bash) の[環境変数](https://github.com/tmori/web-server-load-tester/blob/main/README.md#%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0)を定義してください。
 2. csv ファイルでテスト項目を定義してください。
 3. テスト項目で定義したテストプログラムを作成して、適切なディレクトリ配下に配置してください。
 
