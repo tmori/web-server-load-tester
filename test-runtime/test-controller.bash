@@ -3,6 +3,7 @@ then
     source env/env.bash
 fi
 source test-utils/csv-reader.bash
+source ${TEST_LOGGER}
 
 if [ $# -ne 1 ]
 then
@@ -16,11 +17,13 @@ then
     exit 1
 fi
 
+
 TEST_ITEM=${1}
 
 function do_test_item()
 {
     line=$1
+    TestNo=`csv_read ${TEST_ITEM} ${line} No`
     Multiplicity=`csv_read ${TEST_ITEM} ${line} Multiplicity`
     Setup=`csv_read ${TEST_ITEM} ${line} SetUp`
     TearDown=`csv_read ${TEST_ITEM} ${line} TearDown`
@@ -29,18 +32,22 @@ function do_test_item()
     Done=`csv_read ${TEST_ITEM} ${line} Done`
     DoRepeatNum=`csv_read ${TEST_ITEM} ${line} DoRepeatNum`
 
+    log_init
+    
     # setup
     bash test-runtime/controller/setup.bash ${Setup}
 
     # do test
-    for i in `seq ${Multiplicity}`
+    for id in `seq ${Multiplicity}`
     do
-        bash test-runtime/test-runner.bash ${Prepare} ${Do} ${Done} ${DoRepeatNum} &
+        bash test-runtime/test-runner.bash ${Prepare} ${Do} ${Done} ${DoRepeatNum} ${id} &
     done
     wait
-    
+
     # teardown
     bash test-runtime/controller/teardown.bash ${TearDown}
+
+    log_save ${TestNo}
 }
 
 csv_foreach ${TEST_ITEM} do_test_item
