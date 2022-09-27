@@ -9,6 +9,17 @@ Webサーバーの負荷テストでは、Web APIを連続して多重で実行�
 Web API発行部分やテスト結果の確認部分は、プラグイン(インタフェース実装)として個別開発する形となります。
 
 
+## 機能概要
+テスト項目に共通する環境設定情報は、env/env.bash にて、環境変数で定義します。
+テスト項目は、csv ファイル(サンプル)で定義します。
+
+テストフレームワークは、csv で定義されたテスト項目ファイルをパースして、全テスト項目を自動実行してくれます。
+テスト実行時には、各項目に応じた多重度、連続実行数、test-impl内の呼び出すプログラムをピックアップして実行します。
+
+ここで、テスト実行の親玉は、[test-controller.bash](https://github.com/tmori/web-server-load-tester/blob/main/test-runtime/test-controller.bash) であり、bash スクリプトで 50 行程度でコーディングされていますので、bash スクリプト使える方なら簡単に理解できると思います。
+
+テスト項目実行部分は、[test-runner.bash](https://github.com/tmori/web-server-load-tester/blob/main/test-runtime/test-runner.bash) であり、こちらも bash スクリプトで 30 行程度でコーディングされています。わりと簡単に理解できると思われます。
+
 ## テストフレームワーク設計
 テストフレームワークのクラス設計は下図のとおりです。
 
@@ -46,8 +57,4 @@ web-server-load-tester
 ├── test-logger [テスト用ロガーツール]
 └── test-utils [共通ライブラリ]
 ```
-
-テスト実行する親玉は、[test-controller.bash](https://github.com/tmori/web-server-load-tester/blob/main/test-runtime/test-controller.bash) であり、bash スクリプトで 50 行程度でコーディングされていますので、bash スクリプト使える方なら簡単に理解できると思います。
-テスト項目実行部分は、[test-runner.bash](https://github.com/tmori/web-server-load-tester/blob/main/test-runtime/test-runner.bash) であり、こちらも bash スクリプトで 30 行程度でコーディングされています。わりと簡単に理解できると思われます。
-
 
