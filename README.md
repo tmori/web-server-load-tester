@@ -10,11 +10,11 @@ Web API発行部分やテスト結果の確認部分は、プラグイン(イン
 
 
 ## 機能概要
-テスト項目に共通する環境設定情報は、env/env.bash にて、環境変数で定義します。
-テスト項目は、csv ファイル(サンプル)で定義します。
+テスト項目に共通する環境設定情報は、[env.bash](https://github.com/tmori/web-server-load-tester/blob/main/env/env.bash) にて、環境変数で定義します。
+テスト項目は、csv ファイル([サンプル](https://github.com/tmori/web-server-load-tester/blob/main/test-item/sample-test-item.csv))で定義します。
 
 テストフレームワークは、csv で定義されたテスト項目ファイルをパースして、全テスト項目を自動実行してくれます。
-テスト実行時には、各項目に応じた多重度、連続実行数、test-impl内の呼び出すプログラムをピックアップして実行します。
+テスト実行時には、各項目に応じた多重度、連続実行数、test-impl ディレクトリ内の呼び出すプログラムをピックアップして実行します。
 
 ここで、テスト実行の親玉は、[test-controller.bash](https://github.com/tmori/web-server-load-tester/blob/main/test-runtime/test-controller.bash) であり、bash スクリプトで 50 行程度でコーディングされていますので、bash スクリプト使える方なら簡単に理解できると思います。
 
