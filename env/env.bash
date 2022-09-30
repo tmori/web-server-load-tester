@@ -9,3 +9,8 @@ export TEST_RNTM_DIR=${TOP_DIR}/test-runtime
 export TEST_LOGGER=${TOP_DIR}/test-logger/simple-logger.bash
 export TEST_LOGPATH=${TOP_DIR}/log
 export TEST_PERFPATH=${TOP_DIR}/log/perf
+
+# Options
+#export TEST_SSH_ACCOUNT=tmori@192.168.11.52
+#export TEST_SAR_ENABLE=TRUE
+#export TEST_DISK_DEV=/dev/sdb5
