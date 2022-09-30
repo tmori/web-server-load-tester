@@ -31,7 +31,7 @@ git clone https://github.com/tmori/web-server-load-tester.git
 ## セットアップ手順
 
 1. [env.bash](https://github.com/tmori/web-server-load-tester/blob/main/env/env.bash) の[環境変数](https://github.com/tmori/web-server-load-tester/blob/main/README.md#%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0)を定義してください。
-2. csv ファイルでテスト項目を定義してください。
+2. csv ファイルでテスト項目を定義してください。(注意：カンマの間に空白を含めないこと)
 3. テスト項目で定義したテストプログラムを作成して、適切なディレクトリ配下に配置してください。
 
 ## テスト実行手順

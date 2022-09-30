@@ -10,11 +10,12 @@ function csv_foreach()
 {
     local test_item=${1}
     local callback=${2}
-    tail -n +2 ${test_item} | \
-    while read LINE
+    tail -n +2 ${test_item} > .tmp.txt 
+    for LINE in `cat .tmp.txt`
     do
         ${callback} ${LINE}
     done
+    rm -f .tmp.txt
 }
 
 function csv_col2id()
