@@ -37,12 +37,23 @@ function do_test_item()
     # setup
     bash test-runtime/controller/setup.bash ${Setup}
 
+    if [ -d ${TEST_PERFPATH}/item-${TestNo} ]
+    then
+        rm -f ${TEST_PERFPATH}/item-${TestNo}/*.txt
+    else
+        mkdir ${TEST_PERFPATH}/item-${TestNo}
+    fi
+
+    START_MS=`echo $(($(date +%s%N)/1000000))`
     # do test
     for id in `seq ${Multiplicity}`
     do
-        bash test-runtime/test-runner.bash ${Prepare} ${Do} ${Done} ${DoRepeatNum} ${id} &
+        bash test-runtime/test-runner.bash ${Prepare} ${Do} ${Done} ${DoRepeatNum} ${id} ${TestNo} &
     done
     wait
+    END_MS=`echo $(($(date +%s%N)/1000000))`
+    ELAPS_MS=$(expr $END_MS - $START_MS)
+    echo "${ELAPS_MS}" > ${TEST_PERFPATH}/item-${TestNo}/elaps_ms.txt
 
     # teardown
     bash test-runtime/controller/teardown.bash ${TearDown}

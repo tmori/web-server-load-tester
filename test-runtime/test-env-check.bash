@@ -14,4 +14,19 @@ else
     exit 1
 fi
 
+
+if [ -z ${TEST_PERFPATH} ]
+then
+    echo "ERROR: TEST_PERFPATH is not set"
+    exit 1
+fi
+
+if [ -d ${TEST_PERFPATH} ]
+then
+    :
+else
+    echo "ERROR: ${TEST_PERFPATH} is not found"
+    exit 1
+fi
+
 exit 0
