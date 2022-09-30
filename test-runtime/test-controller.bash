@@ -20,6 +20,12 @@ fi
 
 TEST_ITEM=${1}
 
+function calc_average_response_time_msec()
+{
+    local filepath=${1}
+    cat ${filepath}/response_time-* | grep real | awk 'BEGIN{count=0; sum=0.0}{count++;sum+=$2} END{print (sum/count) * 1000.0 }'
+}
+
 function do_test_item()
 {
     line=$1
@@ -43,8 +49,9 @@ function do_test_item()
     else
         mkdir ${TEST_PERFPATH}/item-${TestNo}
     fi
-
+    DO_NUM=`expr ${Multiplicity} \* ${DoRepeatNum}`
     START_MS=`echo $(($(date +%s%N)/1000000))`
+    
     # do test
     for id in `seq ${Multiplicity}`
     do
@@ -52,8 +59,17 @@ function do_test_item()
     done
     wait
     END_MS=`echo $(($(date +%s%N)/1000000))`
+
+    # set perf info
     ELAPS_MS=$(expr $END_MS - $START_MS)
-    echo "${ELAPS_MS}" > ${TEST_PERFPATH}/item-${TestNo}/elaps_ms.txt
+    THROUGHPUT=`echo "${ELAPS_MS}" | awk -v mul=${DO_NUM} '{print (mul / $1) * 1000.0 }'`
+    RES_TIME_MSEC=`calc_average_response_time_msec ${TEST_PERFPATH}/item-${TestNo}`
+    echo "${ELAPS_MS}"      > ${TEST_PERFPATH}/item-${TestNo}/elaps_ms.txt
+    echo "${THROUGHPUT}"    > ${TEST_PERFPATH}/item-${TestNo}/throughput.txt
+    echo "${RES_TIME_MSEC}" > ${TEST_PERFPATH}/item-${TestNo}/response-time_ms.txt
+    tlog "ELAPS MS = $ELAPS_MS"
+    tlog "THROUGHPUT = $THROUGHPUT"
+    tlog "RES_TIME_MSEC = $RES_TIME_MSEC"
 
     # teardown
     bash test-runtime/controller/teardown.bash ${TearDown}
