@@ -151,7 +151,7 @@ web-server-load-tester
     * スループット向け：elaps_ms.txt (prepare, do, doneの総処理時間をmsec単位で保存します)
     * レスポンスタイム向け：response_time-<多重度ID> (多重実行される各 do 処理時間を time -p で計測した結果を保存します)
     * 平均レスポンス時間[ミリ秒/件]：response_time_ms.txt
-    * スループット[件/病]throughput.txt
+    * スループット[件/秒]throughput.txt
   * デフォルトのものと差し替えた場合は変更してください。
 
 # テスト項目
