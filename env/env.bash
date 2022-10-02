@@ -11,6 +11,7 @@ export TEST_LOGPATH=${TOP_DIR}/log
 export TEST_PERFPATH=${TOP_DIR}/log/perf
 
 # Options
+#export TEST_TARGET_TOOL_DIR=${TOP_DIR}
 #export TEST_SSH_ACCOUNT=tmori@192.168.11.52
 #export TEST_SAR_ENABLE=TRUE
 #export TEST_DISK_DEV=/dev/sdb5
@@ -19,5 +20,6 @@ export TEST_PERFPATH=${TOP_DIR}/log/perf
 export MYSQL_DB_NAME=exment_database
 export MYSQL_USER=exment_user
 export MYSQL_PASSWD=secret
+export MYSQL_DB_DATA_DIR=/var/lib/mysql
 
 
