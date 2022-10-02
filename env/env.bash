@@ -14,3 +14,10 @@ export TEST_PERFPATH=${TOP_DIR}/log/perf
 #export TEST_SSH_ACCOUNT=tmori@192.168.11.52
 #export TEST_SAR_ENABLE=TRUE
 #export TEST_DISK_DEV=/dev/sdb5
+
+# DB options
+export MYSQL_DB_NAME=exment_database
+export MYSQL_USER=exment_user
+export MYSQL_PASSWD=secret
+
+
