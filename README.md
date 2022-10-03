@@ -78,16 +78,16 @@ INFO: 2022年  9月 27日 火曜日 10:58:27 JST : TEARDOWN TEST...
 ## 性能測定対象
 以下の性能を測定します。
 
-* スループット[単位：Do処理数/sec]
+* [スループット](https://github.com/tmori/web-server-load-tester/blob/46404ae7425b0df4afcdfcd40110e5c8f241b516/test-utils/perf/perf.bash#L39-L59)[単位：Do処理数/sec]
   * 定義：( 多重度 × 連続実行数 ) / Do 処理に要する時間[sec]
-* レスポンスタイム[単位：sec/回(Do毎)]
+* [レスポンスタイム](https://github.com/tmori/web-server-load-tester/blob/46404ae7425b0df4afcdfcd40110e5c8f241b516/test-utils/perf/perf.bash#L39-L59)[単位：sec/回(Do毎)]
   * 定義：( Σ各Web API応答時間[sec] ) / ( 多重度 × 連続実行数 )
 * CPU使用率[単位：%]
-  * sar コマンドで CPU idle を監視し、テスト実行前後で増えたCPU使用率を計測
+  * sar コマンドで CPU idle を監視し、テスト実行前後で増えた[CPU使用率](https://github.com/tmori/web-server-load-tester/blob/main/test-utils/perf/sar-cpu.bash)を計測
 * メモリ使用量[単位：GB]
-  * sar コマンドでメモリ使用量(kbmemused) を監視し、テスト実行前後で増えたメモリ使用量を計測
+  * sar コマンドでメモリ使用量(kbmemused) を監視し、テスト実行前後で増えた[メモリ使用量](https://github.com/tmori/web-server-load-tester/blob/main/test-utils/perf/sar-mem.bash)を計測
 * データ使用量[単位：GB]
-  * df コマンドで`TEST_DISK_DEV`で定義されたデバイスの監視し、テスト実行前後で増えたディスク使用量を計測
+  * df コマンドで`TEST_DISK_DEV`で定義されたデバイスの監視し、テスト実行前後で増えた[ディスク使用量](https://github.com/tmori/web-server-load-tester/blob/main/test-utils/perf/perf.bash#L88-L128)を計測
 * DBテーブルの総サイズ[単位：MB]
   * 利用しているデータベースの全DBテーブルの総サイズが、テスト実行前後で増えた量を計測
     * [postgres 向け計測SQL](https://github.com/tmori/web-server-load-tester/blob/main/test-utils/db/postgresql/template/table_stat_sql.tpl)
