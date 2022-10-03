@@ -12,20 +12,20 @@ export TEST_PERFPATH=${TOP_DIR}/log/perf
 export TEST_RESULTPATH=${TOP_DIR}/test-result/${TEST_TARGET}
 
 # Options
+export TEST_SAR_ENABLE=
 #export TEST_TARGET_TOOL_DIR=${TOP_DIR}
 #export TEST_SSH_ACCOUNT=tmori@192.168.11.52
-#export TEST_SAR_ENABLE=TRUE
 #export TEST_DISK_DEV=/dev/sdb5
 
 # DB options
-export DB_TYPE=mysql
+#export DB_TYPE=mysql
 
-export MYSQL_DB_NAME=exment_database
-export MYSQL_USER=exment_user
-export MYSQL_PASSWD=secret
-export MYSQL_DB_DATA_DIR=/var/lib/mysql
+#export MYSQL_DB_NAME=exment_database
+#export MYSQL_USER=exment_user
+#export MYSQL_PASSWD=secret
+#export MYSQL_DB_DATA_DIR=/var/lib/mysql
 
-export POSTGRES_DB_NAME=mattermost
-export POSTGRES_USER=mmuser
-export POSTGRES_PASSWD=mmuser-password
-export POSTGRES_DB_DATA_DIR=/var/lib/postgresql/14/main
+#export POSTGRES_DB_NAME=mattermost
+#export POSTGRES_USER=mmuser
+#export POSTGRES_PASSWD=mmuser-password
+#export POSTGRES_DB_DATA_DIR=/var/lib/postgresql/14/main

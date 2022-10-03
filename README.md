@@ -16,7 +16,7 @@ Web API発行部分やテスト結果の確認部分は、プラグイン(イン
 テストフレームワークは、csv で定義されたテスト項目ファイルをパースして、全テスト項目を自動実行してくれます。
 テスト実行時には、各項目に応じた多重度、連続実行数、test-impl ディレクトリ内の呼び出すプログラムをピックアップして実行します。
 
-ここで、テスト実行の親玉は、[test-controller.bash](https://github.com/tmori/web-server-load-tester/blob/main/test-runtime/test-controller.bash) であり、bash スクリプトで 50 行程度でコーディングされていますので、bash スクリプト使える方なら簡単に理解できると思います。
+ここで、テスト実行の親玉は、[test-controller.bash](https://github.com/tmori/web-server-load-tester/blob/main/test-runtime/test-controller.bash) であり、bash スクリプトで 100 行程度でコーディングされていますので、bash スクリプト使える方なら簡単に理解できると思います。
 
 テスト項目実行部分は、[test-runner.bash](https://github.com/tmori/web-server-load-tester/blob/main/test-runtime/test-runner.bash) であり、こちらも bash スクリプトで 30 行程度でコーディングされています。わりと簡単に理解できると思われます。
 
