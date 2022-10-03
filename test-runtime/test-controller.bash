@@ -78,5 +78,10 @@ function do_test_item()
     log_save ${TestNo}
 }
 
+tlog "OPTION: TEST_SAR_ENABLE=${TEST_SAR_ENABLE}"
+tlog "OPTION: DB_TYPE=${DB_TYPE}"
+tlog "OPTION: TEST_TARGET_TOOL_DIR=${TEST_TARGET_TOOL_DIR}"
+tlog "OPTION: TEST_SSH_ACCOUNT=${TEST_SSH_ACCOUNT}"
+tlog "OPTION: TEST_DISK_DEV=${TEST_DISK_DEV}"
 init_test_result
 csv_foreach ${TEST_ITEM} do_test_item

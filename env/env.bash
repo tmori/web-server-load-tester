@@ -12,7 +12,7 @@ export TEST_PERFPATH=${TOP_DIR}/log/perf
 export TEST_RESULTPATH=${TOP_DIR}/test-result/${TEST_TARGET}
 
 # Options
-export TEST_SAR_ENABLE=
+#export TEST_SAR_ENABLE=TRUE
 #export TEST_TARGET_TOOL_DIR=${TOP_DIR}
 #export TEST_SSH_ACCOUNT=tmori@192.168.11.52
 #export TEST_DISK_DEV=/dev/sdb5

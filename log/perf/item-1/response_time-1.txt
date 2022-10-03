@@ -1,7 +1,7 @@
-real 1.01
+real 1.00
 user 0.00
 sys 0.00
-real 1.00
+real 1.01
 user 0.00
 sys 0.00
 real 1.01

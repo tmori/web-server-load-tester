@@ -64,9 +64,7 @@ function sar_start()
     if [ -z "${TEST_SAR_ENABLE}" ]
     then
         :
-        echo "SAR IS DISABLED"
     else
-        echo "#### ${TEST_SAR_ENABLE}"
         start_sar_mem ${TEST_PERFPATH}/item-${TestNo}/sar_mem.txt
         start_sar_cpu ${TEST_PERFPATH}/item-${TestNo}/sar_cpu.txt
     fi
