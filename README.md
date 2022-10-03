@@ -82,8 +82,8 @@ INFO: 2022年  9月 27日 火曜日 10:58:27 JST : TEARDOWN TEST...
   * 定義：( 多重度 × 連続実行数 ) / Do 処理に要する時間[sec]
 * [レスポンスタイム](https://github.com/tmori/web-server-load-tester/blob/46404ae7425b0df4afcdfcd40110e5c8f241b516/test-utils/perf/perf.bash#L39-L59)[単位：sec/回(Do毎)]
   * 定義：( Σ各Web API応答時間[sec] ) / ( 多重度 × 連続実行数 )
-* CPU使用率[単位：%]
-  * sar コマンドで CPU idle を監視し、テスト実行前後で増えた[CPU使用率](https://github.com/tmori/web-server-load-tester/blob/main/test-utils/perf/sar-cpu.bash)を計測
+* [CPU使用率](https://github.com/tmori/web-server-load-tester/blob/main/test-utils/perf/sar-cpu.bash)[単位：%]
+  * sar コマンドで CPU idle を監視し、テスト実行前後で増えたCPU使用率を計測
 * [メモリ使用量](https://github.com/tmori/web-server-load-tester/blob/main/test-utils/perf/sar-mem.bash)[単位：GB]
   * sar コマンドでメモリ使用量(kbmemused) を監視し、テスト実行前後で増えたメモリ使用量を計測
 * [データ使用量](https://github.com/tmori/web-server-load-tester/blob/main/test-utils/perf/perf.bash#L88-L128)[単位：GB]
