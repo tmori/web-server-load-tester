@@ -18,11 +18,12 @@ export TEST_RESULTPATH=${TOP_DIR}/test-result/${TEST_TARGET}
 #export TEST_DISK_DEV=/dev/sdb5
 
 # DB options
+export DB_TYPE=mysql
+
 export MYSQL_DB_NAME=exment_database
 export MYSQL_USER=exment_user
 export MYSQL_PASSWD=secret
 export MYSQL_DB_DATA_DIR=/var/lib/mysql
-
 
 export POSTGRES_DB_NAME=mattermost
 export POSTGRES_USER=mmuser

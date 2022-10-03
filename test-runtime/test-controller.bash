@@ -97,7 +97,13 @@ function disk_check_start()
     then
         :
     else
-        df ${TEST_DISK_DEV} > ${TEST_PERFPATH}/item-${TestNo}/before_df.txt
+        bash test-utils/remote_command.bash df ${TEST_DISK_DEV} > ${TEST_PERFPATH}/item-${TestNo}/before_df.txt
+    fi
+    if [ -z ${DB_TYPE} ]
+    then
+        :
+    else
+        bash test-utils/remote_script.bash test-utils/db/${DB_TYPE}/table_stat.bash > ${TEST_PERFPATH}/item-${TestNo}/before_table.txt
     fi
 }
 export DISK_USAGE=0
@@ -109,13 +115,19 @@ function disk_check_end()
     then
         :
     else
-        df ${TEST_DISK_DEV} > ${TEST_PERFPATH}/item-${TestNo}/after_df.txt
+        bash test-utils/remote_command.bash df ${TEST_DISK_DEV} > ${TEST_PERFPATH}/item-${TestNo}/after_df.txt
         BEFORE=`grep ${TEST_DISK_DEV} ${TEST_PERFPATH}/item-${TestNo}/before_df.txt | awk '{print $3}'` 
         AFTER=`grep ${TEST_DISK_DEV} ${TEST_PERFPATH}/item-${TestNo}/after_df.txt | awk '{print $3}'` 
         USAGE=`expr ${AFTER} \- ${BEFORE}`
         DISK_USAGE=`echo ${USAGE} | awk '{print $1 / 1024 }'`
         echo "DISK_MB=${DISK_USAGE}" > ${TEST_PERFPATH}/item-${TestNo}/${filename}
         tlog "DISK_MB=${DISK_USAGE}"
+    fi
+    if [ -z ${DB_TYPE} ]
+    then
+        :
+    else
+        bash test-utils/remote_script.bash test-utils/db/${DB_TYPE}/table_stat.bash > ${TEST_PERFPATH}/item-${TestNo}/after_table.txt
     fi
 }
 export BEFORE_CPU_IDLE=0
@@ -130,7 +142,7 @@ function init_test_result()
     else
         mkdir ${TEST_RESULTPATH}
     fi
-    echo "TestNo,Throuput,ResTime,disk_usage_MB,cpu_usage,mem_GB,b_cpu_idle,a_cpu_idle,b_mem_GB,a_mem_GB" > ${TEST_RESULTPATH}/result.csv
+    echo "TestNo,Throuput,ResTime,disk_usage_MB,table_MB,cpu_usage,mem_GB,b_cpu_idle,a_cpu_idle,b_mem_GB,a_mem_GB" > ${TEST_RESULTPATH}/result.csv
 }
 function save_test_result()
 {
@@ -138,7 +150,10 @@ function save_test_result()
     RES_TIME_SEC=`echo ${RES_TIME_MSEC} | awk '{print $1/1000.0}'`
     CPU_USAGE=`echo "${BEFORE_CPU_IDLE} ${AFTER_CPU_IDLE}" | awk '{print $1 - $2}'`
     MEM_GB=`echo "${BEFORE_MEM_GB} ${AFTER_MEM_GB}" | awk '{print $2 - $1}'`
-    echo "${TestNo},${THROUGHPUT},${RES_TIME_SEC},${DISK_USAGE},${CPU_USAGE},${MEM_GB},${BEFORE_CPU_IDLE},${AFTER_CPU_IDLE},${BEFORE_MEM_GB},${AFTER_MEM_GB}" >> ${TEST_RESULTPATH}/result.csv
+    BEFORE_TABLE_MB=`grep TOTLA_SIZE_MB ${TEST_PERFPATH}/item-${TestNo}/before_table.txt | awk '{print $2}'`
+    AFTER_TABLE_MB=`grep TOTLA_SIZE_MB ${TEST_PERFPATH}/item-${TestNo}/after_table.txt | awk '{print $2}'`
+    TABLE_MB=`echo "${BEFORE_TABLE_MB} ${AFTER_TABLE_MB}" | awk '{print $2 - $1}'`
+    echo "${TestNo},${THROUGHPUT},${RES_TIME_SEC},${DISK_USAGE},${TABLE_MB},${CPU_USAGE},${MEM_GB},${BEFORE_CPU_IDLE},${AFTER_CPU_IDLE},${BEFORE_MEM_GB},${AFTER_MEM_GB}" >> ${TEST_RESULTPATH}/result.csv
 }
 
 function do_test_item()

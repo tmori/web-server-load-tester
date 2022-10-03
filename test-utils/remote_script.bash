@@ -12,5 +12,5 @@ then
     exit 1
 fi
 
-ssh ${TEST_SSH_ACCOUNT} ${@:1}
+ssh ${TEST_SSH_ACCOUNT} cd ${TEST_TARGET_TOOL_DIR} && /bin/bash ${@:1}
 
