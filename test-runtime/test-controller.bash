@@ -46,7 +46,8 @@ function perf_start()
     DO_NUM=`expr ${Multiplicity} \* ${DoRepeatNum}`
     START_MS=`echo $(($(date +%s%N)/1000000))`
 }
-
+export THROUGHPUT=0
+export RES_TIME_MSEC=0
 function perf_end()
 {
     local TestNo=${1}
@@ -99,6 +100,7 @@ function disk_check_start()
         df ${TEST_DISK_DEV} > ${TEST_PERFPATH}/item-${TestNo}/before_df.txt
     fi
 }
+export DISK_USAGE=0
 function disk_check_end()
 {
     local TestNo=${1}
@@ -115,6 +117,28 @@ function disk_check_end()
         echo "DISK_MB=${DISK_USAGE}" > ${TEST_PERFPATH}/item-${TestNo}/${filename}
         tlog "DISK_MB=${DISK_USAGE}"
     fi
+}
+export BEFORE_CPU_IDLE=0
+export BEFORE_MEM_GB=0
+export AFTER_CPU_IDLE=0
+export AFTER_MEM_GB=0
+function init_test_result()
+{
+    if [ -d ${TEST_RESULTPATH} ]
+    then
+        :
+    else
+        mkdir ${TEST_RESULTPATH}
+    fi
+    echo "TestNo,Throuput,ResTime,disk_usage_MB,cpu_idle,mem_GB,b_cpu_idle,a_cpu_idle,b_mem_GB,a_mem_GB" > ${TEST_RESULTPATH}/result.csv
+}
+function save_test_result()
+{
+    local TestNo=${1}
+    RES_TIME_SEC=`echo ${RES_TIME_MSEC} | awk '{print $1/1000.0}'`
+    CPU_IDLE=`echo "${BEFORE_CPU_IDLE} ${AFTER_CPU_IDLE}" | awk '{print $2 - $1}'`
+    MEM_GB=`echo "${BEFORE_MEM_GB} ${AFTER_MEM_GB}" | awk '{print $2 - $1}'`
+    echo "${TestNo},${THROUGHPUT},${RES_TIME_SEC},${DISK_USAGE},${CPU_IDLE},${MEM_GB}${BEFORE_CPU_IDLE},${AFTER_CPU_IDLE},${BEFORE_MEM_GB},${AFTER_MEM_GB}" >> ${TEST_RESULTPATH}/result.csv
 }
 
 function do_test_item()
@@ -139,6 +163,8 @@ function do_test_item()
     sleep 10
     disk_check_start ${TestNo}
     sar_end ${TestNo} before_sar.txt
+    BEFORE_CPU_IDLE=${AVERAGE_CPU_IDLE}
+    BEFORE_MEM_GB=${AVERAGE_MEM_GB}
 
     # do test
     sar_start ${TestNo}
@@ -152,11 +178,16 @@ function do_test_item()
     wait -n ${WAIT_PIDS}
     perf_end ${TestNo}
     sar_end ${TestNo} after_sar.txt
+    AFTER_CPU_IDLE=${AVERAGE_CPU_IDLE}
+    AFTER_MEM_GB=${AVERAGE_MEM_GB}
     disk_check_end ${TestNo} disk_usage.txt
+
+    save_test_result ${TestNo}
 
     # teardown
     bash test-runtime/controller/teardown.bash ${TearDown} ${TestNo}
     log_save ${TestNo}
 }
 
+init_test_result
 csv_foreach ${TEST_ITEM} do_test_item
