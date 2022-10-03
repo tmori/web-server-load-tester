@@ -113,6 +113,7 @@ web-server-load-tester
 ├── env [環境設定]
 │   └── env.bash[*ユーザ定義部分*]
 ├── test-item [テスト項目]
+├── test-result [テスト結果]
 ├── test-runtime [テスト・ランタイム共通部]
 │   ├── test-controller.bash
 │   └── test-runner.bash
@@ -131,6 +132,8 @@ web-server-load-tester
 │           └── prepare
 │               └── sample-prepare.bash[*ユーザ定義部分*]
 ├── log [ログファイル配置]
+│   ├── perf[性能測定結果格納ディレクトリ]
+│   └── test-<TestNo>.log [テスト実行ログ]
 ├── test-logger [テスト用ロガーツール]
 └── test-utils [共通ライブラリ]
 ```
