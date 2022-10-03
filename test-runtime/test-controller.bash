@@ -138,7 +138,7 @@ function save_test_result()
     RES_TIME_SEC=`echo ${RES_TIME_MSEC} | awk '{print $1/1000.0}'`
     CPU_IDLE=`echo "${BEFORE_CPU_IDLE} ${AFTER_CPU_IDLE}" | awk '{print $2 - $1}'`
     MEM_GB=`echo "${BEFORE_MEM_GB} ${AFTER_MEM_GB}" | awk '{print $2 - $1}'`
-    echo "${TestNo},${THROUGHPUT},${RES_TIME_SEC},${DISK_USAGE},${CPU_IDLE},${MEM_GB}${BEFORE_CPU_IDLE},${AFTER_CPU_IDLE},${BEFORE_MEM_GB},${AFTER_MEM_GB}" >> ${TEST_RESULTPATH}/result.csv
+    echo "${TestNo},${THROUGHPUT},${RES_TIME_SEC},${DISK_USAGE},${CPU_IDLE},${MEM_GB},${BEFORE_CPU_IDLE},${AFTER_CPU_IDLE},${BEFORE_MEM_GB},${AFTER_MEM_GB}" >> ${TEST_RESULTPATH}/result.csv
 }
 
 function do_test_item()
