@@ -23,3 +23,7 @@ export MYSQL_PASSWD=secret
 export MYSQL_DB_DATA_DIR=/var/lib/mysql
 
 
+export POSTGRES_DB_NAME=mattermost
+export POSTGRES_USER=mmuser
+export POSTGRES_PASSWD=mmuser-password
+export POSTGRES_DB_DATA_DIR=/var/lib/postgresql/14/main
