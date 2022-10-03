@@ -90,6 +90,8 @@ INFO: 2022年  9月 27日 火曜日 10:58:27 JST : TEARDOWN TEST...
   * df コマンドで`TEST_DISK_DEV`で定義されたデバイスの監視し、テスト実行前後で増えたディスク使用量を計測
 * DBテーブルの総サイズ[単位：MB]
   * 利用しているデータベースの全DBテーブルの総サイズが、テスト実行前後で増えた量を計測
+    * [postgres 向け計測SQL](https://github.com/tmori/web-server-load-tester/blob/main/test-utils/db/postgresql/template/table_stat_sql.tpl)
+    * [mysql向け計測SQL](https://github.com/tmori/web-server-load-tester/blob/main/test-utils/db/mysql/template/table_stat_sql.tpl)
 
 ## テストフレームワーク設計
 テストフレームワークのクラス設計は下図のとおりです。
