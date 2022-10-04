@@ -98,7 +98,7 @@ function disk_check_start()
     then
         :
     else
-        bash test-utils/remote_script.bash test-utils/db/${DB_TYPE}/table_stat.bash > ${TEST_PERFPATH}/item-${TestNo}/before_table.txt
+        bash test-utils/remote_script.bash ${TEST_TARGET_TOOL_DIR}/test-utils/db/${DB_TYPE}/table_stat.bash ${TEST_TARGET_TOOL_DIR} > ${TEST_PERFPATH}/item-${TestNo}/before_table.txt
     fi
 }
 
@@ -123,7 +123,7 @@ function disk_check_end()
     then
         :
     else
-        bash test-utils/remote_script.bash test-utils/db/${DB_TYPE}/table_stat.bash > ${TEST_PERFPATH}/item-${TestNo}/after_table.txt
+        bash test-utils/remote_script.bash ${TEST_TARGET_TOOL_DIR}/test-utils/db/${DB_TYPE}/table_stat.bash ${TEST_TARGET_TOOL_DIR} > ${TEST_PERFPATH}/item-${TestNo}/after_table.txt
     fi
 }
 

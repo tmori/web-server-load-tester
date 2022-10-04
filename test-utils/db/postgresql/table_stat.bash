@@ -1,5 +1,13 @@
 #!/bin/bash
 
+if [ $# -ne 1 ]
+then
+    echo "Usage: $0 <exec-dir>"
+    exit 1
+fi
+EXEC_DIR=${1}
+cd ${EXEC_DIR}
+
 if [ -z ${TEST_TARGET} ]
 then
     source env/env.bash
@@ -15,4 +23,4 @@ SQL=`bash test-utils/template_engine/mo test-utils/db/postgresql/template/table_
 export PGPASSWORD=${POSTGRES_PASSWD}
 psql -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB_NAME} -t  -c "${SQL}" | \
     awk -F\| 'BEGIN{sum=0.0}{print $1 " " $2; sum+=$2}END{print  "TOTLA_SIZE_MB " sum}'
-
+export PGPASSWORD=
