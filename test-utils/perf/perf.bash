@@ -148,6 +148,7 @@ function perf_done()
 {
     local TestNo=${1}
     perf_end ${TestNo}
+    sleep 10 # sleep for safety because sar process is not still activated when test is done so fast..
     sar_end ${TestNo} after_sar.txt
     AFTER_CPU_IDLE=${AVERAGE_CPU_IDLE}
     AFTER_MEM_GB=${AVERAGE_MEM_GB}
