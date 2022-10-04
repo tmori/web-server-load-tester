@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#cd /mnt/project/work/test/web-server-load-tester
-#/bin/bash $*
 if [ -z ${TEST_TARGET} ]
 then
     source env/env.bash
