@@ -99,6 +99,7 @@ function disk_check_start()
         :
     else
         bash test-utils/remote_script.bash ${TEST_TARGET_TOOL_DIR}/test-utils/db/${DB_TYPE}/table_stat.bash ${TEST_TARGET_TOOL_DIR} > ${TEST_PERFPATH}/item-${TestNo}/before_table.txt
+        bash test-utils/remote_script.bash ${TEST_TARGET_TOOL_DIR}/test-utils/db/${DB_TYPE}/db_stat.bash ${TEST_TARGET_TOOL_DIR} >> ${TEST_PERFPATH}/item-${TestNo}/before_table.txt
     fi
 }
 
@@ -124,6 +125,7 @@ function disk_check_end()
         :
     else
         bash test-utils/remote_script.bash ${TEST_TARGET_TOOL_DIR}/test-utils/db/${DB_TYPE}/table_stat.bash ${TEST_TARGET_TOOL_DIR} > ${TEST_PERFPATH}/item-${TestNo}/after_table.txt
+        bash test-utils/remote_script.bash ${TEST_TARGET_TOOL_DIR}/test-utils/db/${DB_TYPE}/db_stat.bash ${TEST_TARGET_TOOL_DIR} >> ${TEST_PERFPATH}/item-${TestNo}/after_table.txt
     fi
 }
 
@@ -157,7 +159,7 @@ function perf_done()
     then
         :
     else
-        BEFORE_TABLE_MB=`grep TOTLA_SIZE_MB ${TEST_PERFPATH}/item-${TestNo}/before_table.txt | awk '{print $2}'`
-        AFTER_TABLE_MB=`grep TOTLA_SIZE_MB ${TEST_PERFPATH}/item-${TestNo}/after_table.txt | awk '{print $2}'`
+        BEFORE_TABLE_MB=`grep TOTAL_SIZE_MB ${TEST_PERFPATH}/item-${TestNo}/before_table.txt | awk '{print $2}'`
+        AFTER_TABLE_MB=`grep TOTAL_SIZE_MB ${TEST_PERFPATH}/item-${TestNo}/after_table.txt | awk '{print $2}'`
     fi
 }

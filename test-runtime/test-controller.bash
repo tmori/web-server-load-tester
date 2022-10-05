@@ -19,6 +19,8 @@ then
     exit 1
 fi
 TEST_ITEM=${1}
+echo $TEST_ITEM
+TEST_ITEM_NAME=`echo ${TEST_ITEM} | awk -F\/ '{print $NF}' | awk -F. '{print $1}'`
 
 function init_test_result()
 {
@@ -28,7 +30,7 @@ function init_test_result()
     else
         mkdir ${TEST_RESULTPATH}
     fi
-    echo "TestNo,Throuput,ResTime,disk_usage_MB,table_MB,cpu_usage,mem_GB,b_cpu_idle,a_cpu_idle,b_mem_GB,a_mem_GB" > ${TEST_RESULTPATH}/result.csv
+    echo "TestNo,Throuput,ResTime,disk_usage_MB,table_MB,cpu_usage,mem_GB,b_cpu_idle,a_cpu_idle,b_mem_GB,a_mem_GB" > ${TEST_RESULTPATH}/${TEST_ITEM_NAME}-result.csv
 }
 function save_test_result()
 {
@@ -37,7 +39,7 @@ function save_test_result()
     CPU_USAGE=`echo "${BEFORE_CPU_IDLE} ${AFTER_CPU_IDLE}" | awk '{print $1 - $2}'`
     MEM_GB=`echo "${BEFORE_MEM_GB} ${AFTER_MEM_GB}" | awk '{print $2 - $1}'`
     TABLE_MB=`echo "${BEFORE_TABLE_MB} ${AFTER_TABLE_MB}" | awk '{print $2 - $1}'`
-    echo "${TestNo},${THROUGHPUT},${RES_TIME_SEC},${DISK_USAGE},${TABLE_MB},${CPU_USAGE},${MEM_GB},${BEFORE_CPU_IDLE},${AFTER_CPU_IDLE},${BEFORE_MEM_GB},${AFTER_MEM_GB}" >> ${TEST_RESULTPATH}/result.csv
+    echo "${TestNo},${THROUGHPUT},${RES_TIME_SEC},${DISK_USAGE},${TABLE_MB},${CPU_USAGE},${MEM_GB},${BEFORE_CPU_IDLE},${AFTER_CPU_IDLE},${BEFORE_MEM_GB},${AFTER_MEM_GB}" >> ${TEST_RESULTPATH}/${TEST_ITEM_NAME}-result.csv
 }
 
 function do_test_item()
