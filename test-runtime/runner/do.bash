@@ -15,7 +15,7 @@ fi
 IMPL_ORG=${1}
 
 IMPL=`echo ${IMPL_ORG} | awk -F\( '{print $1}'`
-IMPL_ARGS=`echo ${IMPL_ORG} | awk -F\( '{print $2}' | awk -F\) '{print $1}' | sed -s 's/,/ /g'`
+IMPL_ARGS=`echo ${IMPL_ORG} | awk -F\( '{print $2}' | awk -F\) '{print $1}' | sed -s 's/:/ /g'`
 ID=${2}
 REPEAT_ID=${3}
 

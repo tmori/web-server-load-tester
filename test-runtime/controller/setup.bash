@@ -14,7 +14,7 @@ fi
 IMPL_ORG=${1}
 
 IMPL=`echo ${IMPL_ORG} | awk -F\( '{print $1}'`
-IMPL_ARGS=`echo ${IMPL_ORG} | awk -F\( '{print $2}' | awk -F\) '{print $1}' | sed -s 's/,/ /g'`
+IMPL_ARGS=`echo ${IMPL_ORG} | awk -F\( '{print $2}' | awk -F\) '{print $1}' | sed -s 's/:/ /g'`
 
 TEST_NO=${2}
 #tlog "START SETUP"
