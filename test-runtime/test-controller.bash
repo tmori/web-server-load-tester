@@ -70,7 +70,13 @@ function do_test_item()
         bash test-runtime/test-runner.bash ${Prepare} ${Do} ${Done} ${DoRepeatNum} ${id} ${TestNo} &
         WAIT_PIDS="$! ${WAIT_PIDS}"
     done
-    wait -n ${WAIT_PIDS}
+    tlog "wait start"
+    for process_id in ${WAIT_PIDS}
+    do
+        wait ${process_id}
+        tlog "wait ok: ${process_id}"
+    done
+    tlog "wait end"
 
     perf_done ${TestNo}
     save_test_result ${TestNo}
