@@ -21,5 +21,5 @@ fi
 
 SQL=`bash test-utils/template_engine/mo test-utils/db/mysql/template/table_stat_sql.tpl`
 mysql -u ${MYSQL_USER} -D ${MYSQL_DB_NAME} --password=${MYSQL_PASSWD} -s -N -e "${SQL}" | \
-    awk 'BEGIN{sum=0.0}{print $1 " " $2 " " $3 " " $4; sum+=$2}END{print "TOTLA_SIZE_MB " sum}' 
+    awk 'BEGIN{sum=0.0}{print $1 " " $2 " " $3 " " $4; sum+=$2}END{print "TOTAL_SIZE_MB " sum}' 
 

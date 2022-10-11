@@ -98,6 +98,11 @@ function disk_check_start()
     then
         :
     else
+        if [ ${DB_TYPE} = "mysql" ]
+        then
+            bash test-utils/remote_command.bash sudo systemctl stop mysql
+            bash test-utils/remote_command.bash sudo systemctl start mysql
+        fi
         bash test-utils/remote_script.bash ${TEST_TARGET_TOOL_DIR}/test-utils/db/${DB_TYPE}/table_stat.bash ${TEST_TARGET_TOOL_DIR} > ${TEST_PERFPATH}/item-${TestNo}/before_table.txt
         bash test-utils/remote_script.bash ${TEST_TARGET_TOOL_DIR}/test-utils/db/${DB_TYPE}/db_stat.bash ${TEST_TARGET_TOOL_DIR} >> ${TEST_PERFPATH}/item-${TestNo}/before_table.txt
     fi
@@ -124,6 +129,12 @@ function disk_check_end()
     then
         :
     else
+        if [ ${DB_TYPE} = "mysql" ]
+        then
+            bash test-utils/remote_command.bash sudo systemctl stop mysql
+            bash test-utils/remote_command.bash sudo systemctl start mysql
+        fi
+
         bash test-utils/remote_script.bash ${TEST_TARGET_TOOL_DIR}/test-utils/db/${DB_TYPE}/table_stat.bash ${TEST_TARGET_TOOL_DIR} > ${TEST_PERFPATH}/item-${TestNo}/after_table.txt
         bash test-utils/remote_script.bash ${TEST_TARGET_TOOL_DIR}/test-utils/db/${DB_TYPE}/db_stat.bash ${TEST_TARGET_TOOL_DIR} >> ${TEST_PERFPATH}/item-${TestNo}/after_table.txt
     fi
